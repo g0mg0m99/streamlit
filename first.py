@@ -5,7 +5,7 @@ st.set_page_config(
     page_icon='¯\_(ツ)_/¯'
 )
 
-menu = st.sidebar.selectbox('MENU',['BMI 지수 계산기','원의 넓이 계산기','전화번호 맞추기'])
+menu = st.sidebar.selectbox('MENU',['BMI 지수 계산기','원의 넓이 계산기','연산'])
 
 if menu == 'BMI 지수 계산기':
     st.subheader('BMI 지수 계산기')
@@ -13,11 +13,12 @@ if menu == 'BMI 지수 계산기':
 
     height = st.number_input('키를 입력해주세요(M) : ')
     weight = st.number_input('몸무게를 입력해주세요(Kg) : ',step=1)
-    BMI = weight/(height*height)
-    weight = weight/100
+
     # 과제 1 저체중 / 정상 / 과체중 / 경도 비만 / 중증도 비만 등등 만들기.
     btn = st.button('계산하기')
     if btn:
+        BMI = weight / (height * height)
+        weight = weight / 100
         st.write('당신의 BMI 지수는',BMI,'입니다.')
         if BMI < 20:
             st.write('당신의 BMI 수치는 저체중 입니다.')
@@ -37,13 +38,20 @@ elif menu == '원의 넓이 계산기':
         st.write('원의 넓이는',(r*r*3.14),'입니다.')
 
 # 과제 3 나만의 프로그램 만들기. ( 전부 잘못 된거 같아요)
-elif menu == '전화번호 맞추기':
-    st.subheader('제가 당신의 전화번호를 맞춰볼게요.')
-    nun1 = st.sidebar.text_input('당신의 전화번호 앞자리(4개)를 적어주세요(010 제외) : ',step=1,type='password')
-    nun2 = st.sidebar.text_input('당신의 전화번호 뒷자리(4개)를 적어주세요(010 제외) : ',step=1,type='password')
-    btn = st.button('제가 당신의 번호를 맞춰보겠습니다.')
-    if btn:
-        st.write('당신의 번호는',((nun1*80*250)+nun2)/2,'입니다.')
+elif menu == '연산':
+    st.subheader('연산')
+    a = st.number_input('첫번쨰 수를 입력하세요 : ', step=1)
+    b = st.number_input('두번째 수를 입력하세요 : ', step=1)
+    c = st.text_input('당신은 덧셈,뺄셈,곱셈,나눗셈 중 뭘 하시고 싶으십니까 : ')
 
 
+    btn = st.button('연산하기')
+    # 버튼을 눌렀을 때
+    # 덧셈을 선택하셨습니다. -> 덧셈 진행
+    # 뺏셈을 선택하셨습니다. -> 뺄셈 진행
+    # 곱셈을 선택하셨습니다. -> 곱셈 진행
+    # 나눗셈을 선택하셨습니다. -> 나눗셈 진행
 
+    #if btn:
+        #st.write(
+        #st.write('두 수의 덧셈은')
